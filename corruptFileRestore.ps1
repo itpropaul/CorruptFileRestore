@@ -46,6 +46,6 @@ foreach ($errorRecord in $err)
     }
 }
 
-# After the main script finished, I used notepad++ to get just the filename paths in the failure log. In the case of permissiondenied errors, I used the following script:
+# After the main script finished, I used notepad++ to get just the filename paths in the failure log. In the case of permission denied errors, I used the following script:
 # I could have just as easily used copy-item with the force flag instead of xcopy with the r flag.
 # foreach ($badfile in Get-Content "C:\LogFolder\FailedRestores.txt"){xcopy $badfile.replace("CorruptFileServer", "GoodFileServer") $badfile /y /r}
