@@ -28,7 +28,7 @@ foreach ($errorRecord in $err)
             if ($errorRecord.CategoryInfo.TargetName.contains("\\"))
             {
                 $corruptFile = $errorRecord.CategoryInfo.TargetName
-                $corruptFileRestoreSource = $corruptFile.Replace("CorruptFileServer", "GoodFileServer")
+                $corruptFileRestoreSource = $corruptFile.Replace("CorruptFileServerName", "HealthyFileServerName")
                 # Attempts to overwrite the corrupt file with a good one. Errors get redirected to a log file.
                 Copy-Item $corruptFileRestoreSource $corruptFile 2>> "C:\LogFolder\FailedRestores.txt"
                 # If the Copy-Item operation succeeds, then it gets printed to screen and logged (Tee-Object).
@@ -48,4 +48,4 @@ foreach ($errorRecord in $err)
 
 # After the main script finished, I used notepad++ to get just the filename paths in the failure log. In the case of permission denied errors, I used the following script:
 # I could have just as easily used copy-item with the force flag instead of xcopy with the r flag.
-# foreach ($badfile in Get-Content "C:\LogFolder\FailedRestores.txt"){xcopy $badfile.replace("CorruptFileServer", "GoodFileServer") $badfile /y /r}
+# foreach ($badfile in Get-Content "C:\LogFolder\FailedRestores.txt"){xcopy $badfile.replace("CorruptFileServerName", "HealthyFileServerName") $badfile /y /r}
